@@ -1,0 +1,16 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3": {
+      "ProjectGuid": "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3",
+      "DisplayName": "기타 파일",
+      "ColorIndex": -1
+    },
+    "aca56657-2bd1-4e7c-ba34-3f5082c44969": {
+      "ProjectGuid": "aca56657-2bd1-4e7c-ba34-3f5082c44969",
+      "DisplayName": "TestClient",
+      "ColorIndex": 0
+    }
+  },
+  "NextColorIndex": 1
+}

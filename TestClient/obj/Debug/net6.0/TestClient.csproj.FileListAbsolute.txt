@@ -1,0 +1,15 @@
+C:\Users\ash52\Desktop\TrayTestClient\TestClient\obj\Debug\net6.0\TestClient.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\ash52\Desktop\TrayTestClient\TestClient\obj\Debug\net6.0\TestClient.AssemblyInfoInputs.cache
+C:\Users\ash52\Desktop\TrayTestClient\TestClient\obj\Debug\net6.0\TestClient.AssemblyInfo.cs
+C:\Users\ash52\Desktop\TrayTestClient\TestClient\obj\Debug\net6.0\TestClient.csproj.CoreCompileInputs.cache
+C:\Users\ash52\Desktop\TrayTestClient\TestClient\bin\Debug\net6.0\TestClient.exe
+C:\Users\ash52\Desktop\TrayTestClient\TestClient\bin\Debug\net6.0\TestClient.deps.json
+C:\Users\ash52\Desktop\TrayTestClient\TestClient\bin\Debug\net6.0\TestClient.runtimeconfig.json
+C:\Users\ash52\Desktop\TrayTestClient\TestClient\bin\Debug\net6.0\TestClient.dll
+C:\Users\ash52\Desktop\TrayTestClient\TestClient\bin\Debug\net6.0\ref\TestClient.dll
+C:\Users\ash52\Desktop\TrayTestClient\TestClient\bin\Debug\net6.0\TestClient.pdb
+C:\Users\ash52\Desktop\TrayTestClient\TestClient\obj\Debug\net6.0\TestClient.csproj.AssemblyReference.cache
+C:\Users\ash52\Desktop\TrayTestClient\TestClient\obj\Debug\net6.0\TestClient.dll
+C:\Users\ash52\Desktop\TrayTestClient\TestClient\obj\Debug\net6.0\ref\TestClient.dll
+C:\Users\ash52\Desktop\TrayTestClient\TestClient\obj\Debug\net6.0\TestClient.pdb
+C:\Users\ash52\Desktop\TrayTestClient\TestClient\obj\Debug\net6.0\TestClient.genruntimeconfig.cache
