@@ -5,6 +5,11 @@ using System.Collections.Generic;
 
 namespace tray.net
 {
+    public enum PacketID: UInt16
+    {
+        message=0,
+    }
+
     public class TrayClient
     {
         private Socket socket;
@@ -12,16 +17,15 @@ namespace tray.net
         private IPEndPoint endPoint;
         private Session session;
 
-        private Thread thread;
+        private Thread sesstionThread;
 
         public bool IsConnected;
 
         public TrayClient(string ip, int port)
         {
-            Console.WriteLine("Create Client");
+            //Console.WriteLine("Create Client");
             endPoint=new IPEndPoint(IPAddress.Parse(ip), port);
             socket = new Socket(AddressFamily.InterNetwork,SocketType.Stream,ProtocolType.Tcp);
-
 
             readBuffers = new MutexQueue<BufferObject>();   
             socket.NoDelay= true;
@@ -33,14 +37,14 @@ namespace tray.net
             socket.Connect(endPoint);
             session = new Session(socket, readBuffers);
 
+            sesstionThread = new Thread(session.Dispatch);
+            sesstionThread.Start();
             IsConnected = true;
-            thread = new Thread(session.Dispatch);
-            thread.Start();
         }
 
         public void Update()
         {
-            while (readBuffers.Count() > 0)
+            while (readBuffers.Count() > 0 && IsConnected)
             {
                 var data = readBuffers.Dequeue();
                 OnMessage(data);
@@ -50,19 +54,24 @@ namespace tray.net
         public void DisConnect()
         {
             IsConnected = false;
-            session.DisConnect();   
             session.isThreadStop = true;
-            thread.Join();
+            sesstionThread.Join();
         }
 
         public void OnMessage(BufferObject obj)
         {
-
+            var id= BitConverter.ToInt16(obj.GetBuffer());
+            var size = BitConverter.ToInt16(obj.GetBuffer(), sizeof(UInt16));
+            var data = BitConverter.ToInt16(obj.GetBuffer(),sizeof(UInt16)+sizeof(UInt16)); 
+            Console.WriteLine($"{id} : {size} : {data}");
         }
 
         public void SendData(BufferObject buffer)
         {
-            session.SendData(buffer);
+            if(IsConnected)
+            {
+                session.SendData(buffer);
+            }
         }
     }
 }

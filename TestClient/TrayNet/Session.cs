@@ -12,9 +12,11 @@ namespace tray.net
 
         private MutexQueue<BufferObject> sendBuffers;
         private MutexQueue<BufferObject> readBuffers;
+
+
         public Session(Socket socket,MutexQueue<BufferObject> readBuffer)
         {
-            Console.WriteLine("Create Session");
+           // Console.WriteLine("Create Session");
 
             this.socket = socket;
             this.readBuffers = readBuffer;
@@ -37,8 +39,10 @@ namespace tray.net
 
         public void DisConnect()
         {
+            isThreadStop = true;
             if (socket != null)
             {
+                Console.WriteLine("Stop Socket");
                 socket.Shutdown(SocketShutdown.Both);
                 socket.Close();
             }
@@ -52,6 +56,8 @@ namespace tray.net
                 DispatchSend();
                 Thread.Sleep(5);
             }
+
+            Console.WriteLine("Check out Dispatch");
         }
 
         private void DispatchSend()
@@ -63,7 +69,7 @@ namespace tray.net
                     if (!(sendBuffers.Count() == 0))
                     {
                         BufferObject buffer = sendBuffers.Dequeue();
-                        socket.Send(buffer.GetBuffer());
+                        socket.Send(buffer.GetBuffer(),(int)buffer.BufferSize(),SocketFlags.None);
                     }
                 }
             }
@@ -86,16 +92,19 @@ namespace tray.net
                         BufferObject obj=new BufferObject();    
                         obj.bufferWrite.Write(buffer, received);
                         readBuffers.Enqueue(obj);
+                        Console.WriteLine("Read Data");
                     }
                     else
                     {
+                        Console.WriteLine("Check Disconnect");
                         DisConnect();
                     }
                 }
             }
             catch (Exception ex)
             {
-                Console.Error.WriteLine(ex.Message);
+                DisConnect();
+                Console.Error.WriteLine("DispatchRead :: "+ ex.Message);
             }
         }
     }

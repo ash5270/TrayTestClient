@@ -14,6 +14,8 @@ namespace tray.net
             memoryStream.Write(bytes);
         }
 
+       
+
         public void Write(byte[] buffer,int size)
         {
             int pos = (int)memoryStream.Position;
